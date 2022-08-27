@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                            http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--      1.扫描service下的包-->
+    <context:component-scan base-package="com.kai.service"/>
+    <!--    2.将所有业务类注入spring类-->
+    <bean id ="EmployeeService" class="com.kai.service.EmployeeService">
+        <property name="employeeMapper" ref="employeeMapper"></property>
+    </bean>
+    <bean id ="DepartmentService" class="com.kai.service.DepartmentService">
+        <property name="departmentMapper" ref="departmentMapper"></property>
+    </bean>
+    <!--    声明事务配置-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+</beans>
